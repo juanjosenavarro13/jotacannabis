@@ -1,3 +1,3 @@
 export const infoConstants = {
-  title: 'Jota Cannabis'
-}
+  title: 'Jota Cannabis',
+};

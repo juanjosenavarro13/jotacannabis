@@ -10,7 +10,8 @@
   "scripts": {
     "start:front": "npm run start --workspace=frontend",
     "start:back": "npm run start:dev --workspace=backend",
-    "build:front": "npm run build --workspace=frontend"
+    "build:front": "npm run build --workspace=frontend",
+    "lint": "npm run lint --workspace=frontend"
   },
   "keywords": [],
   "license": "ISC",
