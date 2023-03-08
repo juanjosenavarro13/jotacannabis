@@ -1,0 +1,20 @@
+{
+  "name": "jotacannabis",
+  "version": "1.0.0",
+  "author": "Juan José Navarro Perea",
+  "description": "",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start:front": "npm run start --workspace=frontend",
+    "start:back": "npm run start:dev --workspace=backend",
+    "build:front": "npm run build --workspace=frontend"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "engines": {
+    "node": "16.14.2"
+  }
+}
