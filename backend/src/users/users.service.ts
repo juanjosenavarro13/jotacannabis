@@ -67,4 +67,9 @@ export class UsersService {
     }
     return user;
   }
+
+  async countUsers(): Promise<number> {
+    const users = await this.userRepository.find();
+    return users.length;
+  }
 }

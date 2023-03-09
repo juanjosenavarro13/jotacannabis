@@ -1,6 +1,8 @@
 <ng-container *ngIf="login; else loginTemplate">
   <app-header></app-header>
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
   <app-footer></app-footer>
 </ng-container>
 

@@ -32,4 +32,9 @@ export class UsersController {
   getProfile(@Param() params): Promise<AuthResponse | HttpException> {
     return this.UsersService.getProfile(params.id);
   }
+
+  @Get('count')
+  countUsers(): Promise<number> {
+    return this.UsersService.countUsers();
+  }
 }
