@@ -14,12 +14,13 @@
   <div class="card-body text-center">
     <h2 class="display-6">Informacion</h2>
     <div class="row">
-      <div class="col-3">
-        <h6>Usuarios</h6>
-        <p class="lead">
-          <span class="badge bg-secondary">{{ info.usuarios }}</span>
-        </p>
-      </div>
+      <app-info-count
+        class="col-3"
+        title="Usuarios"
+        [count]="info.usuarios"
+      ></app-info-count>
+      <app-info-count class="col-3" title="Socios"></app-info-count>
+      <app-info-count class="col-3" title="Productos"></app-info-count>
     </div>
   </div>
 </div>

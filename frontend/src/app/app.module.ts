@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RightmenuComponent } from './components/header/rightmenu/rightmenu.component';
+import { InfoCountComponent } from './pages/home/info-count/info-count.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RightmenuComponent } from './components/header/rightmenu/rightmenu.comp
     HeaderComponent,
     FooterComponent,
     RightmenuComponent,
+    InfoCountComponent,
   ],
   imports: [
     BrowserModule,
