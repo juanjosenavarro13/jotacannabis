@@ -17,12 +17,12 @@ export class UsersService {
     // validar si el usuario ya existe
     const userExists = await this.findUserByName(user.username);
     if (userExists) {
-      throw new HttpException('User already exists', 400);
+      throw new HttpException('El usuario ya existe.', 400);
     }
 
     // validar que las contraseñas coincidan
     if (user.password !== user.password_confirmation) {
-      throw new HttpException('Passwords do not match', 400);
+      throw new HttpException('Las contraseñas no coinciden.', 400);
     }
 
     // encriptar password
@@ -40,14 +40,14 @@ export class UsersService {
     // validar si el usuario existe
     const userExists = await this.findUserByName(user.username);
     if (!userExists) {
-      throw new HttpException('User does not exist', 400);
+      throw new HttpException('El usuario no existe.', 400);
     }
 
     // comparar contraseñas
     const isMatch = await bcrypt.compare(user.password, userExists.password);
 
     if (!isMatch) {
-      throw new HttpException('Invalid credentials', 400);
+      throw new HttpException('Credenciales invalidas.', 400);
     }
 
     // borrar password
@@ -63,7 +63,7 @@ export class UsersService {
   async getProfile(id: number): Promise<AuthResponse | HttpException> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new HttpException('User not found', 404);
+      throw new HttpException('El usuario no existe.', 404);
     }
     return user;
   }

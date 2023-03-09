@@ -8,7 +8,11 @@
       height="57"
     />
     <h1 class="h3 mb-3 fw-normal">Iniciar sesion</h1>
-
+    <app-alert
+      *ngIf="messageError"
+      color="danger"
+      [message]="messageError"
+    ></app-alert>
     <div class="form-floating mb-2">
       <input
         type="text"
@@ -30,6 +34,12 @@
       <label for="passwordInput">Contraseña</label>
     </div>
 
-    <button class="w-100 btn btn-lg btn-dark" type="submit">Entrar</button>
+    <button
+      class="w-100 btn btn-lg btn-dark"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Entrar
+    </button>
   </form>
 </div>

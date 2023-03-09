@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import * as actionsAuth from '../../../state/auth/auth.actions';
 import { Router } from '@angular/router';
+import { LoginErrorModel, LoginModel } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent {
     private store: Store<AppState>,
     private router: Router
   ) {}
+
+  messageError = '';
 
   loginForm: loginModelFB = new FormGroup({
     username: new FormControl('', [
@@ -42,14 +45,25 @@ export class LoginComponent {
         this.loginForm.value.username,
         this.loginForm.value.password
       ).subscribe({
-        next: (resp: any) => {
+        next: (resp: LoginModel) => {
           if (resp.id) {
             this.store.dispatch(actionsAuth.login(resp));
             localStorage.setItem('user', JSON.stringify(resp));
             this.router.navigate(['/']);
           }
         },
+        error: (err: LoginErrorModel) => {
+          this.messageError = err.error.message;
+        },
       });
     }
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 }
