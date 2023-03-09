@@ -1,3 +1,4 @@
+import { ProfileComponent } from './pages/profile/profile.component';
 import { infoConstants } from './../../constants/info.constants';
 import { ErrorComponent } from './../pages/error/error.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
     title: infoConstants.title + ' ~ Login',
     canActivate: [AuthGuard],
     data: { auth: true },
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: '**',
