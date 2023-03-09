@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="form-signin w-100 m-auto text-center mt-5">
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <img
+      class="mb-4"
+      src="../../../../assets/images/icon.png"
+      alt=""
+      width="72"
+      height="57"
+    />
+    <h1 class="h3 mb-3 fw-normal">Iniciar sesion</h1>
+
+    <div class="form-floating mb-2">
+      <input
+        type="text"
+        class="form-control"
+        autocomplete="username"
+        id="userInput"
+        formControlName="username"
+      />
+      <label for="userInput">Usuario</label>
+    </div>
+    <div class="form-floating mb-4">
+      <input
+        type="password"
+        class="form-control"
+        autocomplete="current-password"
+        id="passwordInput"
+        formControlName="password"
+      />
+      <label for="passwordInput">Contraseña</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-dark" type="submit">Entrar</button>
+  </form>
+</div>

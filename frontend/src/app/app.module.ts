@@ -10,13 +10,23 @@ import { ErrorComponent } from './pages/error/error.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appState } from './state/app.state';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ErrorComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ErrorComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appState),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
