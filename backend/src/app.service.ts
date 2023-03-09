@@ -8,7 +8,7 @@ export class AppService {
 
   async getInfo(): Promise<GetInfoModel> {
     return {
-      users: await this.UsersService.countUsers(),
+      usuarios: await this.UsersService.countUsers(),
     };
   }
 }
