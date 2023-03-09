@@ -13,6 +13,7 @@ import { appState } from './state/app.state';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RightmenuComponent } from './components/header/rightmenu/rightmenu.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ErrorComponent,
     HeaderComponent,
     FooterComponent,
+    RightmenuComponent,
   ],
   imports: [
     BrowserModule,
