@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Body, Controller, Post, HttpException, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  HttpException,
+  Put,
+  Get,
+  Param,
+} from '@nestjs/common';
 import { LoginUserDTO, RegisterUserDTO } from './users.dto';
 import { AuthResponse } from './users.model';
 import { UsersService } from './users.service';
@@ -18,5 +26,10 @@ export class UsersController {
   @Put('login')
   loginUser(@Body() user: LoginUserDTO): Promise<AuthResponse | HttpException> {
     return this.UsersService.login(user);
+  }
+
+  @Get('profile/:id')
+  getProfile(@Param() params): Promise<AuthResponse | HttpException> {
+    return this.UsersService.getProfile(params.id);
   }
 }

@@ -59,4 +59,12 @@ export class UsersService {
   async findUserByName(username: string): Promise<User> {
     return this.userRepository.findOne({ where: { username } });
   }
+
+  async getProfile(id: number): Promise<AuthResponse | HttpException> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+    return user;
+  }
 }
