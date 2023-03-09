@@ -1,3 +1,4 @@
+import { infoConstants } from './../../../../constants/info.constants';
 import { LoginService } from './../../services/login.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,7 @@ export class LoginComponent {
   ) {}
 
   messageError = '';
+  info = infoConstants;
 
   loginForm: loginModelFB = new FormGroup({
     username: new FormControl('', [
