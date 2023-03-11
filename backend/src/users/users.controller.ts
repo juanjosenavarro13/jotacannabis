@@ -9,7 +9,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { LoginUserDTO, RegisterUserDTO } from './users.dto';
-import { AuthResponse } from './users.model';
+import { AuthResponseModel } from './users.model';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -19,22 +19,29 @@ export class UsersController {
   @Post('register')
   registerUser(
     @Body() user: RegisterUserDTO,
-  ): Promise<AuthResponse | HttpException> {
+  ): Promise<AuthResponseModel | HttpException> {
     return this.UsersService.register(user);
   }
 
   @Put('login')
-  loginUser(@Body() user: LoginUserDTO): Promise<AuthResponse | HttpException> {
+  loginUser(
+    @Body() user: LoginUserDTO,
+  ): Promise<AuthResponseModel | HttpException> {
     return this.UsersService.login(user);
   }
 
   @Get('profile/:id')
-  getProfile(@Param() params): Promise<AuthResponse | HttpException> {
+  getProfile(@Param() params): Promise<AuthResponseModel | HttpException> {
     return this.UsersService.getProfile(params.id);
   }
 
   @Get('count')
   countUsers(): Promise<number> {
     return this.UsersService.countUsers();
+  }
+
+  @Post('validateUser')
+  validateUser(@Body() user: AuthResponseModel): Promise<boolean> {
+    return this.UsersService.validateUser(user);
   }
 }

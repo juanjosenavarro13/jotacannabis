@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LoginUserDTO, RegisterUserDTO } from './users.dto';
 import { User } from './users.entity';
-import { AuthResponse } from './users.model';
+import { AuthResponseModel } from './users.model';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -13,7 +13,9 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async register(user: RegisterUserDTO): Promise<AuthResponse | HttpException> {
+  async register(
+    user: RegisterUserDTO,
+  ): Promise<AuthResponseModel | HttpException> {
     // validar si el usuario ya existe
     const userExists = await this.findUserByName(user.username);
     if (userExists) {
@@ -36,7 +38,7 @@ export class UsersService {
     return userSaved;
   }
 
-  async login(user: LoginUserDTO): Promise<AuthResponse> {
+  async login(user: LoginUserDTO): Promise<AuthResponseModel> {
     // validar si el usuario existe
     const userExists = await this.findUserByName(user.username);
     if (!userExists) {
@@ -60,7 +62,7 @@ export class UsersService {
     return this.userRepository.findOne({ where: { username } });
   }
 
-  async getProfile(id: number): Promise<AuthResponse | HttpException> {
+  async getProfile(id: number): Promise<AuthResponseModel | HttpException> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
       throw new HttpException('El usuario no existe.', 404);
@@ -71,5 +73,12 @@ export class UsersService {
   async countUsers(): Promise<number> {
     const users = await this.userRepository.find();
     return users.length;
+  }
+
+  async validateUser(user: AuthResponseModel): Promise<boolean> {
+    const userValidated = await this.userRepository.findOne({
+      where: { id: user.id, username: user.username },
+    });
+    return !!userValidated;
   }
 }
