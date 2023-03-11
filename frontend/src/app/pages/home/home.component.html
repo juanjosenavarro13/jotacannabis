@@ -10,7 +10,7 @@
     <h2 class="display-6">{{ infoConstants.title }}</h2>
   </div>
 </div>
-<div class="card">
+<div class="card" *ngIf="info | async as info">
   <div class="card-body text-center">
     <h2 class="display-6">Informacion</h2>
     <div class="row">

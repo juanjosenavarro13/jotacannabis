@@ -1,16 +1,29 @@
-import { Observable } from 'rxjs';
 import { apiConstants } from './../constants/api.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetInfoModel } from './app.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  constructor(private http: HttpClient) {}
+  private info: BehaviorSubject<GetInfoModel> =
+    new BehaviorSubject<GetInfoModel>({
+      usuarios: 0,
+    });
 
-  getInfo(): Observable<GetInfoModel> {
-    return this.http.get<GetInfoModel>(apiConstants.info);
+  info$ = this.info.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.getInfo();
+  }
+
+  getInfo(): void {
+    this.http.get<GetInfoModel>(apiConstants.info).subscribe({
+      next: (resp) => {
+        this.info.next(resp);
+      },
+    });
   }
 }

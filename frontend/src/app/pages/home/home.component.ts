@@ -10,20 +10,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   infoConstants = infoConstants;
-  info: GetInfoModel;
+  info = this.AppService.info$;
 
-  constructor(private AppService: AppService) {
-    this.info = {
-      usuarios: 0,
-    };
-    this.getInfo();
-  }
-
-  getInfo() {
-    this.AppService.getInfo().subscribe({
-      next: (resp) => {
-        this.info = resp;
-      },
-    });
-  }
+  constructor(private AppService: AppService) {}
 }
