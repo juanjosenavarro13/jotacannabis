@@ -1,3 +1,4 @@
+import { infoConstants } from './../constants/info.constants';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
@@ -9,6 +10,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
+    title: infoConstants.title + ' ~ Home',
   },
   {
     path: 'users',
