@@ -11,6 +11,8 @@ export class AppService {
   private info: BehaviorSubject<GetInfoModel> =
     new BehaviorSubject<GetInfoModel>({
       usuarios: 0,
+      productos: 0,
+      socios: 0,
     });
 
   info$ = this.info.asObservable();
