@@ -92,7 +92,9 @@ export class UsersService {
 
     this.userRepository.save(user);
 
-    return this.userRepository.findOne({ where: { id } });
+    const updatedUser = await this.userRepository.findOne({ where: { id } });
+    delete updatedUser.password;
+    return updatedUser;
   }
 
   async countUsers(): Promise<number> {
