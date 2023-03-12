@@ -8,7 +8,7 @@ import {
   Get,
   Param,
 } from '@nestjs/common';
-import { LoginUserDTO, RegisterUserDTO } from './users.dto';
+import { LoginUserDTO, RegisterUserDTO, UpdateProfileDTO } from './users.dto';
 import { AuthResponseModel } from './users.model';
 import { UsersService } from './users.service';
 
@@ -33,6 +33,14 @@ export class UsersController {
   @Get('profile/:id')
   getProfile(@Param() params): Promise<AuthResponseModel | HttpException> {
     return this.UsersService.getProfile(params.id);
+  }
+
+  @Post('profile/:id')
+  updateProfile(
+    @Param() params,
+    @Body() user: UpdateProfileDTO,
+  ): Promise<AuthResponseModel | HttpException> {
+    return this.UsersService.updateProfile(params.id, user);
   }
 
   @Get('count')

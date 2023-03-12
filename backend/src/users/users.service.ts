@@ -70,6 +70,31 @@ export class UsersService {
     return user;
   }
 
+  async updateProfile(id: number, updateData) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException('El usuario no existe.', 404);
+    }
+
+    // actualizar usuario
+    user.username = updateData.username;
+
+    if (updateData.password && updateData.password_confirmation) {
+      // validar que las contraseñas coincidan
+      if (updateData.password !== updateData.password_confirmation) {
+        throw new HttpException('Las contraseñas no coinciden.', 400);
+      }
+
+      // encriptar password
+      const hashPassword = await bcrypt.hash(updateData.password, 10);
+      user.password = hashPassword;
+    }
+
+    this.userRepository.save(user);
+
+    return this.userRepository.findOne({ where: { id } });
+  }
+
   async countUsers(): Promise<number> {
     const users = await this.userRepository.find();
     return users.length;
